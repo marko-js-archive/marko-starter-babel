@@ -9,5 +9,8 @@
   "devDependencies": {
     "eslint": "^3.13.0",
     "eslint-config-marko": "^1.0.1"
+  },
+  "dependencies": {
+    "lasso-babel-transform": "^0.4.0"
   }
 }
