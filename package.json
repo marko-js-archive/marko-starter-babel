@@ -1,0 +1,13 @@
+{
+  "name": "marko-starter-babel",
+  "version": "1.0.0",
+  "description": "marko-starter plugin that configures Babel",
+  "main": "index.js",
+  "repository": {},
+  "author": "Phillip Gates-Idem <phillip.idem@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^3.13.0",
+    "eslint-config-marko": "^1.0.1"
+  }
+}
