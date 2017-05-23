@@ -4,7 +4,8 @@ exports.name = 'babel';
 exports.install = function (pluginContext) {
   const BabelConfig = pluginContext.models.Model.extend({
     properties: {
-      extensions: [String]
+      extensions: [String],
+      babelOptions: Object
     }
   });
 
@@ -28,11 +29,13 @@ exports.projectCreated = (project) => {
   let lassoConfigRequire = lassoConfig.require || (lassoConfig.require = {});
   let transforms = lassoConfigRequire.transforms || (lassoConfigRequire.transforms = []);
 
+  const babelConfig = project.getBabelConfig() || {
+    extensions: ['.js', '.es6']
+  };
+
   transforms.push({
     transform: require('lasso-babel-transform'),
-    config: {
-      extensions: ['.js', '.es6']
-    }
+    config: babelConfig
   });
 
   logger.info(`Installed lasso-babel-transform into project "${project.getName()}"`);
