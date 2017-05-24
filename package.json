@@ -11,6 +11,6 @@
     "eslint-config-marko": "^1.0.1"
   },
   "dependencies": {
-    "lasso-babel-transform": "^0.4.0"
+    "lasso-babel-transform": "^1.0.1"
   }
 }

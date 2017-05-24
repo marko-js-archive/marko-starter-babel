@@ -1,3 +1,5 @@
+const defaultFileExtensions = ['.js', '.es6', '.marko'];
+
 // The `filename` is required and necessary for error reporting and logging
 exports.name = 'babel';
 
@@ -29,9 +31,25 @@ exports.projectCreated = (project) => {
   let lassoConfigRequire = lassoConfig.require || (lassoConfig.require = {});
   let transforms = lassoConfigRequire.transforms || (lassoConfigRequire.transforms = []);
 
-  const babelConfig = project.getBabelConfig() || {
-    extensions: ['.js', '.es6']
-  };
+  let babelConfig = project.getBabelConfig();
+
+  if (babelConfig) {
+    let extensions = babelConfig.getExtensions();
+
+    if (extensions) {
+      if (!extensions.includes('.marko')) {
+        extensions.push('.marko');
+      }
+    } else {
+      babelConfig.setExtensions(defaultFileExtensions);
+    }
+
+    babelConfig = babelConfig.clean();
+  } else {
+    babelConfig = {
+      extensions: defaultFileExtensions
+    };
+  }
 
   transforms.push({
     transform: require('lasso-babel-transform'),
